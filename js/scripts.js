@@ -4,79 +4,32 @@
 * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-creative/blob/master/LICENSE)
 */
 
-window.addEventListener('DOMContentLoaded', event => {
-
-    // Navbar shrink function
-    var navbarShrink = function () {
-        const navbarCollapsible = document.body.querySelector('#mainNav');
-        if (!navbarCollapsible) {
-            return;
-        }
-        if (window.scrollY === 0) {
-            navbarCollapsible.classList.remove('navbar-shrink')
-        } else {
-            navbarCollapsible.classList.add('navbar-shrink')
-        }
-
+window.addEventListener("DOMContentLoaded", (e => {
+    var t = function() {
+        const e = document.body.querySelector("#mainNav");
+        e && (0 === window.scrollY ? e.classList.remove("navbar-shrink") : e.classList.add("navbar-shrink"))
     };
-
-    // Shrink the navbar 
-    navbarShrink();
-
-    // Shrink the navbar when page is scrolled
-    document.addEventListener('scroll', navbarShrink);
-
-    // Activate Bootstrap scrollspy on the main nav element
-    const mainNav = document.body.querySelector('#mainNav');
-    if (mainNav) {
-        new bootstrap.ScrollSpy(document.body, {
-            target: '#mainNav',
-            offset: 74,
-        });
-    };
-
-    // Collapse responsive navbar when toggler is visible
-    const navbarToggler = document.body.querySelector('.navbar-toggler');
-    const responsiveNavItems = [].slice.call(
-        document.querySelectorAll('#navbarResponsive .nav-link')
-    );
-    responsiveNavItems.map(function (responsiveNavItem) {
-        responsiveNavItem.addEventListener('click', () => {
-            if (window.getComputedStyle(navbarToggler).display !== 'none') {
-                navbarToggler.click();
-            }
-        });
+    t(),
+    document.addEventListener("scroll", t);
+    document.body.querySelector("#mainNav") && new bootstrap.ScrollSpy(document.body, {
+        target: "#mainNav",
+        offset: 74
     });
-
-    // Automatically resize the textarea while typing
-    const tx = document.getElementsByTagName("textarea");
-    for (let i = 0; i < tx.length; i++) {
-        tx[i].setAttribute("style", "height:" + (tx[i].scrollHeight) + "px;overflow-y:hidden;");
-        tx[i].addEventListener("input", OnInput, false);
+    const n = document.body.querySelector(".navbar-toggler");
+    [].slice.call(document.querySelectorAll("#navbarResponsive .nav-link")).map((function(e) {
+        e.addEventListener("click", (() => {
+            "none" !== window.getComputedStyle(n).display && n.click()
+        }))
+    }));
+    const o = document.getElementsByTagName("textarea");
+    for (let e = 0; e < o.length; e++) o[e].setAttribute("style", "height:" + o[e].scrollHeight + "px;overflow-y:hidden;"),
+    o[e].addEventListener("input", i, !1);
+    function i() {
+        this.style.height = "auto",
+        this.style.height = this.scrollHeight + "px"
     }
-
-        function OnInput() {
-        this.style.height = "auto";
-        this.style.height = (this.scrollHeight) + "px";
-        }
-
-    // Initialize AOS (Animation on scroll)
-     AOS.init({
-         offset: 400,
-         duration: 1000
-     });
-    
-    // Panorama
-     $(document).ready(function(){
-        $(".panorama").panorama_viewer({
-          repeat: true
-        });
-          });
-
-
-      
-
-        
-
-
-});
+    AOS.init({
+        offset: 300,
+        duration: 700
+    })
+}));
